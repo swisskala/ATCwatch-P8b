@@ -22,11 +22,22 @@
 #include <lvgl.h>
 
 
+
 class HomeScreen : public Screen
 {
+    unsigned long last_voltage_update = 0;
+lv_obj_t * label_battery_home;
+
   public:
-    virtual void pre()
+    
+      
+
+virtual void pre()
     {
+
+      label_battery_home = lv_label_create(lv_scr_act(), NULL);
+      lv_obj_align(label_battery_home, lv_scr_act(), LV_ALIGN_IN_BOTTOM_LEFT, 10, -10);
+
       time_data = get_time();
       accl_data = get_accl_data();
 
@@ -46,7 +57,15 @@ class HomeScreen : public Screen
 
       label_battery = lv_label_create(lv_scr_act(), NULL);
       lv_obj_align(label_battery, lv_scr_act(), LV_ALIGN_IN_TOP_LEFT, 25, 5);
-      lv_label_set_text_fmt(label_battery, "%i%%", get_battery_percent());
+      
+    if (millis() - last_voltage_update >= 30000 || last_voltage_update == 0) {
+        String battery_info_home = String(get_battery_percent()) + "%" + " / " + String(get_battery()) + "V";
+        lv_label_set_text(label_battery_home, battery_info_home.c_str());
+        last_voltage_update = millis();
+        lv_label_set_text(label_battery, battery_info_home.c_str());
+    }
+
+
 
 
       label_ble = lv_label_create(lv_scr_act(), NULL);
@@ -108,7 +127,15 @@ class HomeScreen : public Screen
       lv_label_set_text_fmt(label_time,  "%02i:%02i:%02i", time_data.hr, time_data.min, time_data.sec);
       lv_label_set_text_fmt(label_date, "%02i.%02i.%04i", time_data.day, time_data.month, time_data.year);
 
-      lv_label_set_text_fmt(label_battery, "%i%%", get_battery_percent());
+      
+    if (millis() - last_voltage_update >= 30000 || last_voltage_update == 0) {
+        String battery_info_home = String(get_battery_percent()) + "%" + " / " + String(get_battery()) + "V";
+        lv_label_set_text(label_battery_home, battery_info_home.c_str());
+        last_voltage_update = millis();
+        lv_label_set_text(label_battery, battery_info_home.c_str());
+    }
+
+
 
       lv_label_set_text_fmt(label_heart, "%i", get_last_heartrate());
       lv_label_set_text_fmt(label_steps, "%i", accl_data.steps);

@@ -127,6 +127,7 @@ String get_name_msg(int returnLength) {
 }
 
 String get_body_msg(int returnLength) {
+  int maxLength = 100; // Set the maximum length to 100 characters
   if (returnLength != 0 || msgBodyText.length() == returnLength) {
     if (msgBodyText.length() < returnLength) {
       String tempText = msgBodyText;
@@ -136,9 +137,9 @@ String get_body_msg(int returnLength) {
       }
       return tempText;
     } else if (msgBodyText.length() > returnLength)
-      return msgBodyText.substring(0, returnLength - 3) + "...";
+      return msgBodyText.substring(0, maxLength - 3) + "..."; // Limit to 100 characters
   }
-  return msgBodyText;
+  return msgBodyText.substring(0, maxLength); // Limit to 100 characters
 }
 
 String get_titl_msg(int returnLength) {

@@ -28,7 +28,8 @@ class BatteryScreen : public Screen
       lv_obj_align(label, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0);
 
       label_battery = lv_label_create(lv_scr_act(), NULL);
-      lv_label_set_text(label_battery, "---%");
+      String battery_info = String(get_battery_percent()) + "%" + " / " + String(get_battery()) + "V";
+      lv_label_set_text(label_battery, battery_info.c_str());
       lv_obj_align(label_battery, lv_scr_act(), LV_ALIGN_IN_TOP_LEFT, 10, 30);
 
       lv_style_copy( &st, &lv_style_plain );
