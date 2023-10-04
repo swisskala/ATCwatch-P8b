@@ -1,6 +1,25 @@
 # ATCwatch  -WatcH
 Custom Arduino C++ firmware for the P8 and PineTime plus many more DaFit Smartwatches
 
+------------------------------
+
+Changes in this fork:
+
+**display.cpp**
+
+ temp[0] = 0x40 to account for Mirrored P8b Display
+ spiCommand(32); to account for color inversion
+
+**push.cpp**
+
+Changed code to make max. notification length to 100 characters, to fill the screen better
+
+**menu_Home.h**
+
+Added Battery Voltage next to Percentage, refrehsing in 30s intervall
+
+--------------------------------------------------------------------- 
+
 About 150–200uA standby current consumtion. Currently 92 Hours Runtime with heavy notification and usage!
 Basic menu system and notification working.
 
