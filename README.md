@@ -8,6 +8,7 @@ Changes in this fork:
 **display.cpp**
 
  temp[0] = 0x40 to account for Mirrored P8b Display
+ 
  spiCommand(32); to account for color inversion
 
 **push.cpp**
