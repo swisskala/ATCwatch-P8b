@@ -17,7 +17,7 @@ Changed code to make max. notification length to 100 characters, to fill the scr
 
 **menu_Home.h**
 
-Added Battery Voltage next to Percentage, refrehsing in 30s intervall
+Added Battery Voltage next to Percentage, refrehsing in 30s intervall (not finished yet, still shown double on top and bottom)
 
 --------------------------------------------------------------------- 
 
